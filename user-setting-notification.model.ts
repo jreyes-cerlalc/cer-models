@@ -1,4 +1,3 @@
-import { BaseSettingNotification } from '@app/api/interfaces/base-setting-notification.interface';
 import {
   Column,
   Entity,
@@ -6,6 +5,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { BaseSettingNotification } from '../../api/interfaces/base-setting-notification.interface';
 import { Options } from './options.model';
 import { User } from './user.model';
 
