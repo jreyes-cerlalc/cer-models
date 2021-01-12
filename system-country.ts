@@ -1,9 +1,9 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { City } from './city.model';
+import { SystemCity } from './system-city.model';
 import { Options } from './options.model';
 
 @Entity()
-export class Country {
+export class SystemCountry {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -34,6 +34,6 @@ export class Country {
   @Column(() => Options)
   options: Options;
 
-  @OneToMany(() => City, city => city.country)
-  cities: City[];
+  @OneToMany(() => SystemCity, city => city.country)
+  cities: SystemCity[];
 }

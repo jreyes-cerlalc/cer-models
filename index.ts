@@ -1,15 +1,15 @@
-import { City } from './city.model';
-import { Country } from './country.model';
+import { SystemCity } from './system-city.model';
+import { SystemCountry } from './system-country';
 import { UserSettingNotification } from './user-setting-notification.model';
 import { UserToken } from './user-token.model';
 import { User } from './user.model';
-import { Version } from './version.model';
+import { SystemVersion } from './system-version';
 
 export default [
   User,
   UserToken,
   UserSettingNotification,
-  Version,
-  Country,
-  City,
+  SystemVersion,
+  SystemCountry,
+  SystemCity,
 ];

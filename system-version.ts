@@ -3,7 +3,7 @@ import { Platform } from '../enums/platform.enum';
 import { Options } from './options.model';
 
 @Entity()
-export class Version {
+export class SystemVersion {
   @PrimaryGeneratedColumn()
   id: number;
 
