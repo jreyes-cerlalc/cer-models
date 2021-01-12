@@ -15,6 +15,9 @@ export class SystemCity {
   @Column(() => Options)
   options: Options;
 
-  @ManyToOne(_ => SystemCountry, country => country.cities)
+  @ManyToOne(_ => SystemCountry, country => country.cities, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  })
   country: SystemCountry;
 }
