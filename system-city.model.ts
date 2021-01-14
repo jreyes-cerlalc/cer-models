@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { SystemCountry } from './system-country';
+import { SystemCountry } from './system-country.model';
 import { Options } from './options.model';
 
 @Entity()
