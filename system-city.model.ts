@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { SystemCountry } from './system-country.model';
 import { Options } from './options.model';
+import { SystemState } from './system-state.model';
 
 @Entity()
 export class SystemCity {
@@ -15,9 +15,9 @@ export class SystemCity {
   @Column(() => Options)
   options: Options;
 
-  @ManyToOne(_ => SystemCountry, country => country.cities, {
+  @ManyToOne(() => SystemState, state => state.cities, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
-  country: SystemCountry;
+  state: SystemState;
 }

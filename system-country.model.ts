@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 import { Options } from './options.model';
-import { SystemCity } from './system-city.model';
+import { SystemState } from './system-state.model';
 
 @Entity()
 export class SystemCountry {
@@ -31,6 +31,6 @@ export class SystemCountry {
   @Column(() => Options)
   options: Options;
 
-  @OneToMany(() => SystemCity, city => city.country)
-  cities: SystemCity[];
+  @OneToMany(() => SystemState, state => state.country)
+  states: SystemState[];
 }
