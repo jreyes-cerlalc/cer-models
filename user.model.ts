@@ -4,6 +4,7 @@ import { AccountType } from '../enums/account-type.enum';
 import { Options } from './options.model';
 import { UserSettingNotification } from './user-setting-notification.model';
 import { UserToken } from './user-token.model';
+import { SystemCountry } from './system-country.model';
 
 @Entity()
 export class User implements BaseUser {
@@ -16,6 +17,27 @@ export class User implements BaseUser {
     length: 50,
   })
   fullname: string;
+
+  @Column({
+    length: 50,
+  })
+  lastname: string;
+
+  @Column({
+    length: 50,
+  })
+  phone: string;
+
+  @Column({
+    length: 50,
+  })
+  firstDigitCard: string;
+
+  @Column({
+    length: 50,
+  })
+  secondDigitCard: string;
+
 
   @Column({
     length: 50,
@@ -43,6 +65,11 @@ export class User implements BaseUser {
   @OneToOne(() => UserSettingNotification, notif => notif.user)
   notificationSettings: UserSettingNotification;
 
+
+  @ManyToOne(() => SystemCountry, country => country.states)
+  country: SystemCountry;
+
+  
   @Column({
     default: '',
   })
