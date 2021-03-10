@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
 import { BaseUser } from '../../api/interfaces/base-user.interface';
 import { AccountType } from '../enums/account-type.enum';
 import { Options } from './options.model';

@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
 import { User } from './user.model';
 import { Company } from './company.model';
 import { Options } from './options.model';
@@ -15,13 +15,14 @@ export class UserCompany {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
-  userId: User;
+  user: User;
 
-  @ManyToOne(() => Company, company => company.states, {
+  @ManyToOne(() => Company, company => company.id, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
-  companyId: Company;
+  
+  company: Company;
 
   @Column(() => Options)
   options: Options;
