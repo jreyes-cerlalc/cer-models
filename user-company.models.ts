@@ -1,14 +1,12 @@
-import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from './user.model';
 import { Company } from './company.model';
 import { Options } from './options.model';
 
 @Entity()
 export class UserCompany {
-  @PrimaryColumn({
-    length: 36,
-  })
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
 
   @ManyToOne(() => User, user => user.tokens, {

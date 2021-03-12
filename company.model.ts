@@ -1,12 +1,10 @@
-import { Column, Entity, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Options } from './options.model';
 
 @Entity()
 export class Company {
-  @PrimaryColumn({
-    length: 36,
-  })
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Column({
     length: 50,
