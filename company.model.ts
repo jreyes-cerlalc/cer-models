@@ -17,7 +17,7 @@ export class Company {
   nit: number;
 
   @Column({ default: 0 })
-  lastDigitNit: number;
+  nit: lastDigitNit;
 
   @Column(() => Options)
   options: Options;

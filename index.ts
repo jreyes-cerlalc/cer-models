@@ -5,10 +5,6 @@ import { UserToken } from './user-token.model';
 import { User } from './user.model';
 import { SystemVersion } from './system-version.model';
 import { SystemState } from './system-state.model';
-import { Company } from './company.model';
-import { UserCompany } from './user-company.models';
-import { TypeTax } from './type-tax.models';
-import { CompanyTax } from './company-tax.model';
 
 export default [
   User,
@@ -18,8 +14,4 @@ export default [
   SystemCountry,
   SystemState,
   SystemCity,
-  UserCompany,
-  Company,
-  TypeTax,
-  CompanyTax
 ];
