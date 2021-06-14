@@ -12,7 +12,7 @@ export class UserToken implements BaseToken {
   @Column()
   pushToken: string;
 
-  @Column()
+  @Column({ nullable: true })
   authToken: string;
 
   @Column({
@@ -23,6 +23,7 @@ export class UserToken implements BaseToken {
   @ManyToOne(() => User, user => user.tokens, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
+    nullable: true,
   })
   user: User;
 
