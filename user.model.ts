@@ -1,6 +1,6 @@
 import { Column, Entity, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
 import { BaseUser } from '../../api/interfaces/base-user.interface';
-import { AccountType } from '../enums/account-type.enum';
+import { AccountType } from './enums/account-type.enum';
 import { Options } from './options.model';
 import { UserSettingNotification } from './user-setting-notification.model';
 import { UserToken } from './user-token.model';

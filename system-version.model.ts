@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { Platform } from '../enums/platform.enum';
+import { Platform } from './enums/platform.enum';
 import { Options } from './options.model';
 
 @Entity()

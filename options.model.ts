@@ -1,5 +1,5 @@
 import { Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { Status } from '../enums/status.enum';
+import { Status } from './enums/status.enum';
 
 export class Options {
   @Column({

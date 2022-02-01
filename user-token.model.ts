@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { BaseToken } from '../../api/interfaces/base-token.interface';
-import { Platform } from '../enums/platform.enum';
+import { Platform } from './enums/platform.enum';
 import { Options } from './options.model';
 import { User } from './user.model';
 
