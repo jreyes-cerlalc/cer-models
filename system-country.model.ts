@@ -1,6 +1,7 @@
-import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { Options } from './options.model';
 import { SystemState } from './system-state.model';
+import { Status } from './enums/status.enum';
 
 @Entity()
 export class SystemCountry {
@@ -28,8 +29,18 @@ export class SystemCountry {
   @Column()
   currency: string;
 
-  @Column(() => Options)
-  options: Options;
+  @Column({
+    type: 'enum',
+    enum: Status,
+    default: Status.Active,
+  })
+  status: Status;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 
   @OneToMany(() => SystemState, state => state.country)
   states: SystemState[];

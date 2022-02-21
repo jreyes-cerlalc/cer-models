@@ -1,8 +1,8 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { BaseToken } from '../../api/interfaces/base-token.interface';
 import { Platform } from './enums/platform.enum';
-import { Options } from './options.model';
 import { User } from './user.model';
+import { Status } from './enums/status.enum';
 
 @Entity()
 export class UserToken implements BaseToken {
@@ -36,6 +36,16 @@ export class UserToken implements BaseToken {
   @Column()
   lastUsed: Date;
 
-  @Column(() => Options)
-  options: Options;
+  @Column({
+    type: 'enum',
+    enum: Status,
+    default: Status.Active,
+  })
+  status: Status;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

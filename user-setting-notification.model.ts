@@ -4,10 +4,13 @@ import {
   JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { BaseSettingNotification } from '../../api/interfaces/base-setting-notification.interface';
 import { Options } from './options.model';
 import { User } from './user.model';
+import { Status } from './enums/status.enum';
 
 @Entity()
 export class UserSettingNotification implements BaseSettingNotification {
@@ -23,19 +26,32 @@ export class UserSettingNotification implements BaseSettingNotification {
 
   @Column({
     type: 'boolean',
+    default: false
   })
   sms: boolean;
 
   @Column({
     type: 'boolean',
+    default: false
   })
   push: boolean;
 
   @Column({
     type: 'boolean',
+    default: false
   })
   email: boolean;
 
-  @Column(() => Options)
-  options: Options;
+  @Column({
+    type: 'enum',
+    enum: Status,
+    default: Status.Active,
+  })
+  status: Status;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

@@ -1,9 +1,10 @@
-import { Column, Entity, OneToMany, OneToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, OneToMany, OneToOne, PrimaryColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 import { BaseUser } from '../../api/interfaces/base-user.interface';
 import { AccountType } from './enums/account-type.enum';
 import { Options } from './options.model';
 import { UserSettingNotification } from './user-setting-notification.model';
 import { UserToken } from './user-token.model';
+import { Status } from './enums/status.enum';
 
 @Entity()
 export class User implements BaseUser {
@@ -48,6 +49,16 @@ export class User implements BaseUser {
   })
   verificationCode: string;
 
-  @Column(() => Options)
-  options: Options;
+  @Column({
+    type: 'enum',
+    enum: Status,
+    default: Status.Active,
+  })
+  status: Status;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }

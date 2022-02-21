@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
 import { Platform } from './enums/platform.enum';
 import { Options } from './options.model';
+import { Status } from './enums/status.enum';
 
 @Entity()
 export class SystemVersion {
@@ -23,6 +24,16 @@ export class SystemVersion {
   @Column({ default: 0 })
   flag: number;
 
-  @Column(() => Options)
-  options: Options;
+  @Column({
+    type: 'enum',
+    enum: Status,
+    default: Status.Active,
+  })
+  status: Status;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
