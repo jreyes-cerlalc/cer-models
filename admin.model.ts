@@ -5,6 +5,7 @@ import { AdminToken } from './admin-token.model';
 import { AdminSettingNotification } from './admin-setting-notification.model';
 import { AccountType } from './enums/account-type.enum';
 import { Status } from './enums/status.enum';
+import { AdminRole } from './enums/admin-role.enum';
 
 
 @Entity()
@@ -43,6 +44,13 @@ export class Admin implements BaseUser {
     default: AccountType.App,
   })
   type: AccountType;
+
+  @Column({
+    type: 'enum',
+    enum: AdminRole,
+    default: AdminRole.SuperAdmin,
+  })
+  role: AdminRole;
 
   @Column({
     type: 'enum',
