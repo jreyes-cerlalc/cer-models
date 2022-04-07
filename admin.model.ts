@@ -1,12 +1,20 @@
-import { Column, Entity, OneToMany, OneToOne, PrimaryColumn, ManyToOne, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { BaseUser } from '../../api/interfaces/base-user.interface';
-import { Options } from './options.model';
-import { AdminToken } from './admin-token.model';
-import { AdminSettingNotification } from './admin-setting-notification.model';
-import { AccountType } from './enums/account-type.enum';
-import { Status } from './enums/status.enum';
-import { AdminRole } from './enums/admin-role.enum';
-
+import {
+  Column,
+  Entity,
+  OneToMany,
+  OneToOne,
+  PrimaryColumn,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from "typeorm";
+import { BaseUser } from "../../api/interfaces/base-user.interface";
+import { Options } from "./options.model";
+import { AdminToken } from "./admin-token.model";
+import { AdminSettingNotification } from "./admin-setting-notification.model";
+import { AccountType } from "./enums/account-type.enum";
+import { Status } from "./enums/status.enum";
+import { AdminRole } from "./enums/admin-role.enum";
 
 @Entity()
 export class Admin implements BaseUser {
@@ -34,26 +42,26 @@ export class Admin implements BaseUser {
   password: string;
 
   @Column({
-    default: '',
+    default: "",
   })
   verificationCode: string;
 
   @Column({
-    type: 'enum',
+    type: "enum",
     enum: AccountType,
     default: AccountType.App,
   })
   type: AccountType;
 
   @Column({
-    type: 'enum',
+    type: "enum",
     enum: AdminRole,
     default: AdminRole.SuperAdmin,
   })
   role: AdminRole;
 
   @Column({
-    type: 'enum',
+    type: "enum",
     enum: Status,
     default: Status.Active,
   })
@@ -65,10 +73,9 @@ export class Admin implements BaseUser {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany(() => AdminToken, adminToken => adminToken.user)
+  @OneToMany(() => AdminToken, (adminToken) => adminToken.user)
   tokens: AdminToken[];
 
-  @OneToOne(() => AdminSettingNotification, notif => notif.user)
+  @OneToOne(() => AdminSettingNotification, (notif) => notif.user)
   notificationSettings: AdminSettingNotification;
-
 }

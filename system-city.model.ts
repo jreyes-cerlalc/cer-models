@@ -1,7 +1,14 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
-import { Options } from './options.model';
-import { SystemState } from './system-state.model';
-import { Status } from './enums/status.enum';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+  CreateDateColumn,
+} from "typeorm";
+import { Options } from "./options.model";
+import { SystemState } from "./system-state.model";
+import { Status } from "./enums/status.enum";
 
 @Entity()
 export class SystemCity {
@@ -14,7 +21,7 @@ export class SystemCity {
   name: string;
 
   @Column({
-    type: 'enum',
+    type: "enum",
     enum: Status,
     default: Status.Active,
   })
@@ -26,9 +33,9 @@ export class SystemCity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToOne(() => SystemState, state => state.cities, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
+  @ManyToOne(() => SystemState, (state) => state.cities, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   })
   state: SystemState;
 }
