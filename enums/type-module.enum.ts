@@ -1,4 +1,4 @@
-export enum Module {
+export enum TypeModule {
   Juridic = "juridic",
   Smart = "smart",
 }

@@ -1,39 +1,31 @@
 import {
-  Entity,
-  PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
-  UpdateDateColumn,
+  Entity,
   OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from "typeorm";
-import { ServiceQuestion } from "../../api/interfaces/service-question";
 import { Status } from "./enums/status.enum";
-import { TypeQuestion } from "./enums/type-question.enum";
+import { TypeModule } from "./enums/type-module.enum";
 import { ParameterizationQuestionsTypesContracts } from "./parameterization-questions-types-contracts.model";
 
 @Entity()
-export class ParameterizationQuestion implements ServiceQuestion {
+export class ParameterizationTypeContract {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({
-    type: "text",
-    comment: "Nombre y/o descripción de la pregunta",
+    length: 255,
   })
-  question: string;
+  name: string;
 
   @Column({
     type: "enum",
-    enum: TypeQuestion,
-    comment: "Tipo de pregunta",
+    enum: TypeModule,
+    comment: "Tipo de contrato",
   })
-  typeQuestion: TypeQuestion;
-
-  @Column({
-    type: "text",
-    comment: "Respuesta a la pregunta",
-  })
-  answers: string;
+  typeModule: TypeModule;
 
   @Column({
     type: "enum",
@@ -51,7 +43,7 @@ export class ParameterizationQuestion implements ServiceQuestion {
   @OneToMany(
     () => ParameterizationQuestionsTypesContracts,
     (parameterizationQuestionsTypesContracts) =>
-      parameterizationQuestionsTypesContracts.parameterizationQuestion
+      parameterizationQuestionsTypesContracts.parameterizationTypeContract
   )
   typesContracts: ParameterizationQuestionsTypesContracts[];
 }

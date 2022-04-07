@@ -9,6 +9,8 @@ import { AdminSettingNotification } from "./admin-setting-notification.model";
 import { AdminToken } from "./admin-token.model";
 import { Admin } from "./admin.model";
 import { ParameterizationQuestion } from "./parameterization-question.model";
+import { ParameterizationTypeContract } from "./parameterization-type-contract.model";
+import { ParameterizationQuestionsTypesContracts } from "./parameterization-questions-types-contracts.model";
 
 export default [
   User,
@@ -22,4 +24,6 @@ export default [
   AdminToken,
   AdminSettingNotification,
   ParameterizationQuestion,
+  ParameterizationTypeContract,
+  ParameterizationQuestionsTypesContracts,
 ];
