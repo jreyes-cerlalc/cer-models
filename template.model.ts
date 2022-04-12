@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Admin } from "./admin.model";
 import { Status } from "./enums/status.enum";
 import { ParameterizationTypeContract } from "./parameterization-type-contract.model";
 
@@ -41,4 +42,8 @@ export class Template {
   @OneToOne(() => ParameterizationTypeContract)
   @JoinColumn()
   typeContract: ParameterizationTypeContract;
+
+  @OneToOne(() => Admin)
+  @JoinColumn()
+  user: Admin;
 }
