@@ -3,6 +3,7 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -39,11 +40,13 @@ export class Template {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToOne(() => ParameterizationTypeContract)
-  @JoinColumn()
+  @ManyToOne(
+    () => ParameterizationTypeContract,
+    (parameterizationTypeContract) => parameterizationTypeContract.templates
+  )
   typeContract: ParameterizationTypeContract;
 
-  @OneToOne(() => Admin)
+  @ManyToOne(() => Admin, (user) => user.templates)
   @JoinColumn()
   user: Admin;
 }

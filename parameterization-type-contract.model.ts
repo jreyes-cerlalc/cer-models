@@ -9,6 +9,7 @@ import {
 import { Status } from "./enums/status.enum";
 import { TypeModule } from "./enums/type-module.enum";
 import { ParameterizationQuestionsTypesContracts } from "./parameterization-questions-types-contracts.model";
+import { Template } from "./template.model";
 
 @Entity()
 export class ParameterizationTypeContract {
@@ -46,4 +47,7 @@ export class ParameterizationTypeContract {
       parameterizationQuestionsTypesContracts.parameterizationTypeContract
   )
   typesContracts: ParameterizationQuestionsTypesContracts[];
+
+  @OneToMany(() => Template, (template) => template.typeContract)
+  templates: Template[];
 }
