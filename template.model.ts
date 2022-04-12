@@ -42,11 +42,18 @@ export class Template {
 
   @ManyToOne(
     () => ParameterizationTypeContract,
-    (parameterizationTypeContract) => parameterizationTypeContract.templates
+    (parameterizationTypeContract) => parameterizationTypeContract.templates,
+    {
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
+    }
   )
   typeContract: ParameterizationTypeContract;
 
-  @ManyToOne(() => Admin, (user) => user.templates)
+  @ManyToOne(() => Admin, (user) => user.templates, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
   @JoinColumn()
   user: Admin;
 }

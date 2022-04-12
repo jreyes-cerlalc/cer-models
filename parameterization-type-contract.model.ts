@@ -48,6 +48,9 @@ export class ParameterizationTypeContract {
   )
   typesContracts: ParameterizationQuestionsTypesContracts[];
 
-  @OneToMany(() => Template, (template) => template.typeContract)
+  @OneToMany(() => Template, (template) => template.typeContract, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
   templates: Template[];
 }

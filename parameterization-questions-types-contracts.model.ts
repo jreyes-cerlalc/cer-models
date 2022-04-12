@@ -30,14 +30,22 @@ export class ParameterizationQuestionsTypesContracts {
 
   @ManyToOne(
     () => ParameterizationQuestion,
-    (parameterizationQuestion) => parameterizationQuestion.typesContracts
+    (parameterizationQuestion) => parameterizationQuestion.typesContracts,
+    {
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
+    }
   )
   parameterizationQuestion: ParameterizationQuestion;
 
   @ManyToOne(
     () => ParameterizationTypeContract,
     (parameterizationTypeContract) =>
-      parameterizationTypeContract.typesContracts
+      parameterizationTypeContract.typesContracts,
+    {
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
+    }
   )
   parameterizationTypeContract: ParameterizationTypeContract;
 }
