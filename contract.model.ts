@@ -34,12 +34,11 @@ export class Contract {
   })
   template: Template;
 
-
-  @ManyToOne(() => Admin, (user) => user.contracts, {
+  @ManyToOne(() => Admin, (admin) => admin.contracts, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
-  user: Admin;
+  admin: Admin;
 
   @Column({
     type: "enum",

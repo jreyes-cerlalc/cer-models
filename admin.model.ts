@@ -84,6 +84,6 @@ export class Admin implements BaseUser {
   @OneToMany(() => Template, (template) => template.admin)
   templates: Template[];
 
-  @OneToMany(() => Contract, (contract) => contract.user)
+  @OneToMany(() => Contract, (contract) => contract.admin)
   contracts: Contract[];
 }
