@@ -16,6 +16,7 @@ import { AccountType } from "./enums/account-type.enum";
 import { Status } from "./enums/status.enum";
 import { AdminRole } from "./enums/admin-role.enum";
 import { Template } from "./template.model";
+import { Contract } from "./contract.model";
 
 @Entity()
 export class Admin implements BaseUser {
@@ -80,6 +81,9 @@ export class Admin implements BaseUser {
   @OneToOne(() => AdminSettingNotification, (notif) => notif.user)
   notificationSettings: AdminSettingNotification;
 
-  @OneToMany(() => Template, (template) => template.user)
+  @OneToMany(() => Template, (template) => template.admin)
   templates: Template[];
+
+  @OneToMany(() => Contract, (contract) => contract.user)
+  contracts: Contract[];
 }

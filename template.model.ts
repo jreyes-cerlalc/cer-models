@@ -4,11 +4,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { Admin } from "./admin.model";
+import { Contract } from "./contract.model";
 import { Status } from "./enums/status.enum";
 import { ParameterizationTypeContract } from "./parameterization-type-contract.model";
 
@@ -50,10 +51,16 @@ export class Template {
   )
   typeContract: ParameterizationTypeContract;
 
-  @ManyToOne(() => Admin, (user) => user.templates, {
+  @ManyToOne(() => Admin, (admin) => admin.templates, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
   @JoinColumn()
-  user: Admin;
+  admin: Admin;
+
+  @OneToMany(() => Contract, (contract) => contract.template, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
+  contracts: Contract[];
 }

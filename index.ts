@@ -12,6 +12,7 @@ import { ParameterizationQuestion } from "./parameterization-question.model";
 import { ParameterizationTypeContract } from "./parameterization-type-contract.model";
 import { ParameterizationQuestionsTypesContracts } from "./parameterization-questions-types-contracts.model";
 import { Template } from "./template.model";
+import { Contract } from "./contract.model";
 
 export default [
   User,
@@ -28,4 +29,5 @@ export default [
   ParameterizationTypeContract,
   ParameterizationQuestionsTypesContracts,
   Template,
+  Contract,
 ];
