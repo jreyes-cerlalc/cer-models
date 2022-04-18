@@ -58,9 +58,6 @@ export class Template {
   @JoinColumn()
   admin: Admin;
 
-  @OneToMany(() => Contract, (contract) => contract.template, {
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE",
-  })
+  @OneToMany(() => Contract, (contract) => contract.template)
   contracts: Contract[];
 }
