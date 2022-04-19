@@ -2,13 +2,18 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
 import { Admin } from "./admin.model";
 import { StatusContract } from "./enums/contract-status.enum";
+import { OrderSigners } from "./enums/order-signers.enum";
+import { Message } from "./message.model";
+import { Signer } from "./signer.model";
 import { Template } from "./template.model";
 
 @Entity()
@@ -42,6 +47,19 @@ export class Contract {
     onUpdate: "CASCADE",
   })
   admin: Admin;
+
+  @Column({
+    type: "enum",
+    enum: OrderSigners,
+    default: OrderSigners.Automatic,
+  })
+  orderSigners: OrderSigners;
+
+  @OneToMany(() => Signer, (signer) => signer.contract)
+  signers: Signer[];
+
+  @OneToOne(() => Message, (message) => message.contract)
+  message: Message;
 
   @Column({
     type: "enum",

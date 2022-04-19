@@ -18,6 +18,7 @@ import { AdminRole } from "./enums/admin-role.enum";
 import { Template } from "./template.model";
 import { Contract } from "./contract.model";
 import { Signer } from "./signer.model";
+import { Message } from "./message.model";
 
 @Entity()
 export class Admin implements BaseUser {
@@ -90,4 +91,7 @@ export class Admin implements BaseUser {
 
   @OneToMany(() => Signer, (signer) => signer.admin)
   signers: Signer[];
+
+  @OneToMany(() => Message, (message) => message.admin)
+  messages: Message[];
 }

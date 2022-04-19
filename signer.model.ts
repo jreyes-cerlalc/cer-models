@@ -1,7 +1,16 @@
 import { type } from "os";
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import {
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { Admin } from "./admin.model";
-import { KeyDocument } from "./enums/signer-key";
+import { Contract } from "./contract.model";
+import { KeyDocument } from "./enums/signer-key.enum";
+import { Status } from "./enums/status.enum";
 
 @Entity()
 export class Signer {
@@ -28,7 +37,7 @@ export class Signer {
   @Column({
     type: "enum",
     enum: KeyDocument,
-    default: KeyDocument.CitizenshipID,
+    default: KeyDocument.CC,
     comment: "Tipo de identificación del firmante",
   })
   identification: KeyDocument;
@@ -38,8 +47,38 @@ export class Signer {
 
   @Column({
     type: "boolean",
-    default: false,
+    default: 0,
     comment: "Para el firmante clave de acceso al documento",
   })
-  keyDocumentAccess: boolean;
+  requiresPassword: boolean;
+
+  @Column({
+    type: "tinyint",
+  })
+  signatoryPosition: number;
+
+  @Column({
+    type: "boolean",
+    default: 0,
+  })
+  alreadySigned: boolean;
+
+  @ManyToOne(() => Contract, (contract) => contract.signers, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
+  contract: Contract;
+
+  @Column({
+    type: "enum",
+    enum: Status,
+    default: Status.Active,
+  })
+  status: Status;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
