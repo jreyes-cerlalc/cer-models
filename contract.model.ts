@@ -21,7 +21,9 @@ export class Contract {
   })
   title: string;
 
-  @Column()
+  @Column({
+    comment: "Número de firmantes",
+  })
   numberOfSignatories: number;
 
   @Column({
