@@ -40,10 +40,10 @@ export class Signer {
     default: KeyDocument.CC,
     comment: "Tipo de identificación del firmante",
   })
-  identification: KeyDocument;
+  documentType: KeyDocument;
 
   @Column()
-  numberIdentification: number;
+  documentNumber: number;
 
   @Column({
     type: "boolean",
