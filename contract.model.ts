@@ -36,6 +36,11 @@ export class Contract {
   })
   textContract: string;
 
+  @Column({
+    type: "text",
+  })
+  answers: string;
+
   @ManyToOne(() => Template, (template) => template.contracts, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
