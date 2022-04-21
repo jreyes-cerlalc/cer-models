@@ -54,12 +54,14 @@ export class Signer {
 
   @Column({
     type: "tinyint",
+    comment: "Posición de envio de contrato a firmante",
   })
   signatoryPosition: number;
 
   @Column({
     type: "boolean",
     default: 0,
+    comment: "Si firmante ya vio el contrato",
   })
   alreadySigned: boolean;
 
@@ -68,6 +70,19 @@ export class Signer {
     onUpdate: "CASCADE",
   })
   contract: Contract;
+
+  @Column({
+    type: "timestamp",
+    default: () => "NOW()",
+    comment: "Fecha de envio a firmantes",
+  })
+  sendDate: Date;
+
+  @Column({
+    type: "timestamp",
+    comment: "Fecha cuando firma un firmante",
+  })
+  signatureDate: Date;
 
   @Column({
     type: "enum",
