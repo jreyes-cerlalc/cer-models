@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 import { Admin } from "./admin.model";
 import { Contract } from "./contract.model";
+import { SignatureStatus } from "./enums/signature-status.enum";
 import { KeyDocument } from "./enums/signer-key.enum";
 import { Status } from "./enums/status.enum";
 
@@ -59,11 +60,19 @@ export class Signer {
   signatoryPosition: number;
 
   @Column({
-    type: "boolean",
-    default: 0,
-    comment: "Si firmante ya vio el contrato",
+    type: "enum",
+    enum: SignatureStatus,
+    default: SignatureStatus.Pending,
+    comment: "Estado del firmante si ya vio el contrato o no",
   })
-  alreadySigned: boolean;
+  signatureStatus: SignatureStatus;
+
+  @Column({
+    type: "boolean",
+    default: false,
+    comment: "Si el firmante visualizo o no el contrato",
+  })
+  viewedContract: boolean;
 
   @ManyToOne(() => Contract, (contract) => contract.signers, {
     onDelete: "CASCADE",
