@@ -15,6 +15,7 @@ import { Template } from "./template.model";
 import { Contract } from "./contract.model";
 import { Signer } from "./signer.model";
 import { Message } from "./message.model";
+import { SignerReasonsRejection } from "./signer-reasons-rejection.model";
 
 export default [
   User,
@@ -34,4 +35,5 @@ export default [
   Contract,
   Signer,
   Message,
+  SignerReasonsRejection,
 ];

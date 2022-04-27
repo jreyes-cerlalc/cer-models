@@ -5,13 +5,14 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   CreateDateColumn,
-  UpdateDateColumn,
+  UpdateDateColumn, OneToMany,
 } from "typeorm";
 import { Admin } from "./admin.model";
 import { Contract } from "./contract.model";
 import { SignatureStatus } from "./enums/signature-status.enum";
 import { KeyDocument } from "./enums/signer-key.enum";
 import { Status } from "./enums/status.enum";
+import {SignerReasonsRejection} from "./signer-reasons-rejection.model";
 
 @Entity()
 export class Signer {
@@ -74,11 +75,28 @@ export class Signer {
   })
   viewedContract: boolean;
 
+  @Column({
+    type: "text"
+  })
+  signatureImage: string
+
+  @Column({
+    type: "varchar",
+    length: 50,
+  })
+  signatureText: string
+
   @ManyToOne(() => Contract, (contract) => contract.signers, {
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
   })
   contract: Contract;
+
+  @OneToMany(() => SignerReasonsRejection, (signerReasonsRejection) => signerReasonsRejection.signer, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
+  signerReasonsRejections: SignerReasonsRejection
 
   @Column({
     type: "timestamp",
