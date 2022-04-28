@@ -1,18 +1,19 @@
-import { type } from "os";
 import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
   ManyToOne,
   CreateDateColumn,
-  UpdateDateColumn, OneToMany,
+  UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
 import { Admin } from "./admin.model";
 import { Contract } from "./contract.model";
 import { SignatureStatus } from "./enums/signature-status.enum";
 import { KeyDocument } from "./enums/signer-key.enum";
 import { Status } from "./enums/status.enum";
-import {SignerReasonsRejection} from "./signer-reasons-rejection.model";
+import { SignerReasonsRejection } from "./signer-reasons-rejection.model";
+import { TypeSignature } from "./enums/type-signature.enum";
 
 @Entity()
 export class Signer {
@@ -76,15 +77,28 @@ export class Signer {
   viewedContract: boolean;
 
   @Column({
-    type: "text"
+    type: "enum",
+    enum: TypeSignature,
+    comment: "Tipo de firma del firmante sea imagen o texto",
   })
-  signatureImage: string
+  typeSignature: TypeSignature;
+
+  @Column({
+    type: "text",
+  })
+  signatureImage: string;
 
   @Column({
     type: "varchar",
     length: 50,
   })
-  signatureText: string
+  signatureText: string;
+
+  @Column({
+    type: "varchar",
+    length: 255,
+  })
+  fontFamily: string;
 
   @ManyToOne(() => Contract, (contract) => contract.signers, {
     onDelete: "CASCADE",
@@ -92,11 +106,15 @@ export class Signer {
   })
   contract: Contract;
 
-  @OneToMany(() => SignerReasonsRejection, (signerReasonsRejection) => signerReasonsRejection.signer, {
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE",
-  })
-  signerReasonsRejections: SignerReasonsRejection
+  @OneToMany(
+    () => SignerReasonsRejection,
+    (signerReasonsRejection) => signerReasonsRejection.signer,
+    {
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
+    }
+  )
+  signerReasonsRejections: SignerReasonsRejection;
 
   @Column({
     type: "timestamp",
