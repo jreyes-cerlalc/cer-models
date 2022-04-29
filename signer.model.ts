@@ -20,12 +20,6 @@ export class Signer {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Admin, (admin) => admin.signers, {
-    onDelete: "CASCADE",
-    onUpdate: "CASCADE",
-  })
-  admin: Admin;
-
   @Column({
     length: 255,
   })
@@ -80,25 +74,62 @@ export class Signer {
     type: "enum",
     enum: TypeSignature,
     comment: "Tipo de firma del firmante sea imagen o texto",
+    default: null,
   })
   typeSignature: TypeSignature;
 
   @Column({
     type: "text",
+    default: null,
   })
   signatureImage: string;
 
   @Column({
     type: "varchar",
     length: 50,
+    default: null,
   })
   signatureText: string;
 
   @Column({
     type: "varchar",
     length: 255,
+    default: null,
   })
   fontFamily: string;
+
+  @Column({
+    type: "timestamp",
+    default: () => "NOW()",
+    comment: "Fecha de envio a firmantes",
+  })
+  sendDate: Date;
+
+  @Column({
+    type: "timestamp",
+    comment: "Fecha cuando firma un firmante",
+    default: null,
+  })
+  signatureDate: Date;
+
+  @Column({
+    type: "enum",
+    enum: Status,
+    default: Status.Active,
+  })
+  status: Status;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @ManyToOne(() => Admin, (admin) => admin.signers, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
+  })
+  admin: Admin;
 
   @ManyToOne(() => Contract, (contract) => contract.signers, {
     onDelete: "CASCADE",
@@ -116,29 +147,5 @@ export class Signer {
   )
   signerReasonsRejections: SignerReasonsRejection;
 
-  @Column({
-    type: "timestamp",
-    default: () => "NOW()",
-    comment: "Fecha de envio a firmantes",
-  })
-  sendDate: Date;
 
-  @Column({
-    type: "timestamp",
-    comment: "Fecha cuando firma un firmante",
-  })
-  signatureDate: Date;
-
-  @Column({
-    type: "enum",
-    enum: Status,
-    default: Status.Active,
-  })
-  status: Status;
-
-  @CreateDateColumn()
-  createdAt: Date;
-
-  @UpdateDateColumn()
-  updatedAt: Date;
 }
