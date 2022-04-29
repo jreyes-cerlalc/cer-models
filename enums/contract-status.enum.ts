@@ -2,6 +2,6 @@ export enum StatusContract {
   Created = "created",
   Send = "send",
   Completed = "completed",
-  Slope = "slope",
+  Pending = "pending",
   Rejected = "rejected",
 }
