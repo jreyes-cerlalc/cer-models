@@ -11,6 +11,7 @@ import {
 import { Admin } from "./admin.model";
 import { Contract } from "./contract.model";
 import { Status } from "./enums/status.enum";
+import { Paragraph } from "./paragraph.model";
 import { ParameterizationTypeContract } from "./parameterization-type-contract.model";
 
 @Entity()
@@ -60,4 +61,7 @@ export class Template {
 
   @OneToMany(() => Contract, (contract) => contract.template)
   contracts: Contract[];
+
+  @OneToMany(() => Paragraph, (paragraph) => paragraph.template)
+  paragraphs: Paragraph[];
 }
