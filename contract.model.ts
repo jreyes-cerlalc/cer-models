@@ -28,6 +28,7 @@ export class Contract {
 
   @Column({
     comment: "Número de firmantes",
+    nullable: true,
   })
   numberOfSignatories: number;
 
@@ -38,6 +39,7 @@ export class Contract {
 
   @Column({
     type: "text",
+    nullable: true,
   })
   answers: string;
 
@@ -57,6 +59,7 @@ export class Contract {
     type: "enum",
     enum: OrderSigners,
     default: OrderSigners.Automatic,
+    nullable: true,
   })
   orderSigners: OrderSigners;
 
