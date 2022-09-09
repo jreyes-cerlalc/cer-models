@@ -39,8 +39,11 @@ export class Signer {
   })
   documentType: KeyDocument;
 
-  @Column()
-  documentNumber: number;
+  @Column({
+    length: 15,
+    type: "varchar",
+  })
+  documentNumber: string;
 
   @Column({
     type: "boolean",
